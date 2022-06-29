@@ -1,9 +1,6 @@
 .App {
   text-align: center;
-
 }
-
-
 
 .App-logo {
   height: 40vmin;
@@ -40,14 +37,12 @@
   }
 }
 
-
 .line-through {
   text-decoration: line-through;
 }
 
 .list {
   display: flex;
-    
 }
 
 .form {
@@ -57,9 +52,8 @@
 }
 
 .form button {
-  width : 200px;
+  width: 200px;
 }
-
 
 input {
   margin-bottom: 10px;
