@@ -1,8 +1,14 @@
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import { ImBin, ImCheckmark, ImCross } from "react-icons/im";
+import checkDone from "./Functions/checkDone";
+import removeTask from "./Functions/removeTask";
+import { useTasks, useUpdateTasks } from "./context/TasksProvider";
 
-const Task = ({ task, checkDone, removeTask }) => {
+const Task = ({ task }) => {
+  const tasks = useTasks();
+  const setTasks = useUpdateTasks();
+
   return (
     <div className="list justify-content-center" key={task.id}>
       <ListGroup.Item
@@ -15,7 +21,7 @@ const Task = ({ task, checkDone, removeTask }) => {
         <div>
           <Button
             className="m-2"
-            onClick={() => checkDone(task.id)}
+            onClick={() => checkDone(task.id, tasks, setTasks)}
             size={"sm"}
             variant={task.complete ? "warning" : "success"}
           >
@@ -23,7 +29,7 @@ const Task = ({ task, checkDone, removeTask }) => {
           </Button>
           <Button
             className="m-2"
-            onClick={() => removeTask(task.id)}
+            onClick={() => removeTask(task.id, tasks, setTasks)}
             size={"sm"}
             variant="danger"
           >

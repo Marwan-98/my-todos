@@ -1,11 +1,17 @@
 import Button from "react-bootstrap/Button";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { ImFilter } from "react-icons/im";
+import { useUpdateFilter } from "./context/FilterProvider";
+import { useTasks, useUpdateTasks } from "./context/TasksProvider";
+import uncheckAll from "./Functions/unCheckAll";
 
-const Filters = ({ updateFilter, uncheckAll }) => {
+const Filters = () => {
+  const tasks = useTasks();
+  const setTasks = useUpdateTasks();
+  const updateFilter = useUpdateFilter();
+
   const icon = (
     <span>
       <ImFilter />
@@ -51,37 +57,11 @@ const Filters = ({ updateFilter, uncheckAll }) => {
         <Button
           variant="outline-warning"
           className="mx-1"
-          onClick={() => updateFilter(uncheckAll)}
+          onClick={() => updateFilter(uncheckAll(tasks, setTasks))}
         >
           Uncheck All
         </Button>
       </div>
-
-      {/* 
-      <Button
-        variant="outline-primary"
-        className="mx-1"
-        onClick={() => updateFilter("NON_COMPLETE")}
-      >
-        Show Incomplete
-      </Button>
-      <Button
-        variant="outline-success"
-        className="mx-1"
-        onClick={() => updateFilter("COMPLETE")}
-      >
-        Show Complete
-      </Button>
-      <Button
-        variant="outline-dark"
-        className="mx-1"
-        onClick={() => updateFilter("ALL")}
-      >
-        Show All
-      </Button>
-      <Button variant="outline-warning" className="mx-1" onClick={uncheckAll}>
-        Uncheck All
-      </Button> */}
     </div>
   );
 };

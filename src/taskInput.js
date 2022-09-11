@@ -3,9 +3,13 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { ImPlus } from "react-icons/im";
+import { useTasks, useUpdateTasks } from "./context/TasksProvider";
+import updateTasks from "./Functions/updateTasks";
 
-const TaskInput = ({ updateTasks }) => {
+const TaskInput = () => {
   const [input, setInput] = useState("");
+  const tasks = useTasks();
+  const setTasks = useUpdateTasks();
   return (
     <div>
       <InputGroup className="my-3">
@@ -20,7 +24,7 @@ const TaskInput = ({ updateTasks }) => {
         <Button
           xs={5}
           onClick={() => {
-            updateTasks(input);
+            updateTasks(input, tasks, setTasks);
             setInput("");
           }}
         >
