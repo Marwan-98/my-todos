@@ -1,3 +1,4 @@
+import React from "react";
 import Button from "react-bootstrap/Button";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -7,7 +8,9 @@ import { useUpdateFilter } from "./context/FilterProvider";
 import { useTasks, useUpdateTasks } from "./context/TasksProvider";
 import uncheckAll from "./Functions/unCheckAll";
 
-const Filters = () => {
+type Props = {};
+
+const Filters = (props: Props) => {
   const tasks = useTasks();
   const setTasks = useUpdateTasks();
   const updateFilter = useUpdateFilter();
@@ -57,7 +60,7 @@ const Filters = () => {
         <Button
           variant="outline-warning"
           className="mx-1"
-          onClick={() => updateFilter(uncheckAll(tasks, setTasks))}
+          onClick={() => updateFilter(uncheckAll({ tasks, setTasks }))}
         >
           Uncheck All
         </Button>

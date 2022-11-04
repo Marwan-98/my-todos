@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -6,7 +7,9 @@ import { ImPlus } from "react-icons/im";
 import { useTasks, useUpdateTasks } from "./context/TasksProvider";
 import updateTasks from "./Functions/updateTasks";
 
-const TaskInput = () => {
+type Props = {};
+
+const TaskInput = (props: Props) => {
   const [input, setInput] = useState("");
   const tasks = useTasks();
   const setTasks = useUpdateTasks();
@@ -22,9 +25,8 @@ const TaskInput = () => {
           value={input}
         />
         <Button
-          xs={5}
           onClick={() => {
-            updateTasks(input, tasks, setTasks);
+            updateTasks({ input, tasks, setTasks });
             setInput("");
           }}
         >

@@ -1,11 +1,17 @@
+import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import { ImBin, ImCheckmark, ImCross } from "react-icons/im";
 import checkDone from "./Functions/checkDone";
 import removeTask from "./Functions/removeTask";
 import { useTasks, useUpdateTasks } from "./context/TasksProvider";
+import { task } from "./types/task";
 
-const Task = ({ task }) => {
+type Props = {
+  task: task;
+};
+
+const Task = ({ task }: Props) => {
   const tasks = useTasks();
   const setTasks = useUpdateTasks();
 
@@ -21,7 +27,7 @@ const Task = ({ task }) => {
         <div>
           <Button
             className="m-2"
-            onClick={() => checkDone(task.id, tasks, setTasks)}
+            onClick={() => checkDone({ id: task.id, tasks: tasks, setTasks })}
             size={"sm"}
             variant={task.complete ? "warning" : "success"}
           >
@@ -29,7 +35,7 @@ const Task = ({ task }) => {
           </Button>
           <Button
             className="m-2"
-            onClick={() => removeTask(task.id, tasks, setTasks)}
+            onClick={() => removeTask({ id: task.id, tasks, setTasks })}
             size={"sm"}
             variant="danger"
           >

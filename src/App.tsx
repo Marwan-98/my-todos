@@ -1,3 +1,4 @@
+import React from "react";
 import "./App.css";
 import { useEffect } from "react";
 import TaskInput from "./taskInput";
@@ -10,7 +11,10 @@ import Col from "react-bootstrap/Col";
 import { useTasks } from "./context/TasksProvider";
 
 // ALL | COMPLETED | NOT_COMPLETED
-function App() {
+
+interface Props extends React.HTMLAttributes<HTMLDivElement> {}
+
+const App = (props: Props): JSX.Element => {
   const tasks = useTasks();
 
   useEffect(() => {
@@ -25,8 +29,7 @@ function App() {
           <TaskInput />
         </Col>
         <Col className="d-flex justify-content-start align-items-center">
-          <Filters
-          />
+          <Filters />
         </Col>
       </Row>
       <Row>
@@ -36,6 +39,6 @@ function App() {
       </Row>
     </Container>
   );
-}
+};
 
 export default App;
